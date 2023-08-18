@@ -1,15 +1,19 @@
 version: '3'
 services:
   tts-generation-webui:
-    image: rsxdalv/tts-generation-webui
+    build: . # Specifies the build context (current directory)
+    image: skittixch/tts-generation-webui
     restart: unless-stopped
     ports:
-      - "7860:7860"
+      - "7861:7860"
     container_name: tts-generation-webui
+    env_file:
+      # Specifies the path to the .env file
+      - .env
     deploy:
-        resources:
-          reservations:
-            devices:
-              - driver: nvidia
-                device_ids: ['0']
-                capabilities: [gpu]
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: [ '0' ]
+              capabilities: [ gpu ]

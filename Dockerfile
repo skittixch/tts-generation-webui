@@ -18,7 +18,7 @@ RUN pip3 install --upgrade pip setuptools && \
 WORKDIR /app
 
 # Clone the repo
-RUN git clone https://github.com/rsxdalv/tts-generation-webui.git
+RUN git clone https://github.com/skittixch/tts-generation-webui.git
 
 # Set working directory to the cloned repo
 WORKDIR /app/tts-generation-webui
@@ -29,5 +29,10 @@ RUN pip3 install -r requirements_audiocraft.txt
 RUN pip3 install -r requirements_bark_hubert_quantizer.txt
 RUN pip3 install -r requirements_rvc.txt
 
+# Adding .env settings
+ENV USER=$USER
+ENV DOMAIN=$DOMAIN
+
 # Run the server
-CMD python server.py
+CMD ssh -f -N -R 5001:127.0.0.1:7860 ${USER}@${DOMAIN} -i ~/.ssh/id_rsa \
+    && python server.py
