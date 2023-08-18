@@ -33,6 +33,9 @@ RUN pip3 install -r requirements_rvc.txt
 ENV USER=$USER
 ENV DOMAIN=$DOMAIN
 
-# Run the server
+# Added openssh client to support reverse proxy -EB
+RUN apt-get update && apt-get install -y openssh-client
+
+# Run the server (additional changes to support reverse proxy added -EB)
 CMD ssh -f -N -R 5001:127.0.0.1:7860 ${USER}@${DOMAIN} -i ~/.ssh/id_rsa \
     && python server.py
