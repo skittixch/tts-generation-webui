@@ -4,6 +4,10 @@ services:
     build: . # Specifies the build context (current directory)
     image: skittixch/tts-generation-webui
     restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ./.ssh
+        target: /root/.ssh
     ports:
       - "7861:7860"
     container_name: tts-generation-webui
