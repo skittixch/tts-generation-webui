@@ -32,3 +32,5 @@ node_modules/
 
 # Ignore contents of .ssh folder
 .ssh/*
+#but not this file. ".gitkeep" is used to make sure github still tracks the .ssh folder
+!.ssh/.gitkeep
