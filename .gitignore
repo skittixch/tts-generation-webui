@@ -29,3 +29,6 @@ node_modules/
 
 # Ignore temporary Jupiter notebooks
 *.temp.ipynb
+
+# Ignore contents of .ssh folder
+.ssh/*
